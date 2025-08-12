@@ -171,7 +171,7 @@ class User:
         )
         return (PID_encryption, PID_signature)
 
-    def verify(self, message, signature, ring_user_ids, event="default", user_dir=None):
+    def verify(self, message, signature, ring_user_ids, event="default", user_dir=DEFAULT_USER_KEYS_DIR):
         """
         验证环签名。
         :param message: 被签名的消息
