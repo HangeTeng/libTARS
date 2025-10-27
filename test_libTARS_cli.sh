@@ -24,7 +24,7 @@ python libTARS_cli.py kgc tracerkeygen -p config/params.json -k config/kgc/key.j
 # done
 
 echo "==== 3. 生成3个用户密钥 ===="
-for uid in 1001 1002 1003; do
+for uid in 1001 1002 1003 1004 1005 1006 1007 1008 1009 1010; do
     python libTARS_cli.py user keygen $uid -p config/params.json -d config/user -k config/user/user_${uid}_key.json -pk config/user/user_${uid}_pub.json
 done
 
@@ -32,8 +32,8 @@ echo "==== 4. 创建待签名消息文件 ===="
 mkdir -p temp
 echo "This is a test message for ring signature." > temp/test_message.txt
 
-echo "==== 5. 用用户1001和1002对消息进行环签名 ===="
-python libTARS_cli.py user sign 1001 temp/test_message.txt 1001,1002,1003 -p config/params.json -d config/user -o temp/test_signature.json
+echo "==== 5. 用用户1001对消息进行环签名 ===="
+python libTARS_cli.py user sign 1001 temp/test_message.txt 1001,1002,1003,1004,1005,1006,1007,1008,1009,1010 -p config/params.json -d config/user -o temp/test_signature.json
 
 echo "==== 6. 验证环签名 ===="
 python libTARS_cli.py user verify temp/test_message.txt -p config/params.json -d config/user -i temp/test_signature.json
